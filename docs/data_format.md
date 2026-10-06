@@ -1,7 +1,6 @@
 # Input data format
 
-The pipeline starts from three tables. Registry data (Danish National Patient
-Register, UK Biobank) cannot be shared; `synthetic/generate_synthetic_data.R`
+The pipeline starts from three tables. Real data cannot be shared; `synthetic/generate_synthetic_data.R`
 creates fake tables with exactly this structure so that the code can be run
 end to end.
 
