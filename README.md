@@ -2,7 +2,7 @@
 
 Code accompanying the paper
 
-> **Granger-causal relationships in cardiometabolic disease progression networks from longitudinal health records**
+> **Directed Granger-causal networks of cardiometabolic disease progression from longitudinal nationwide health records**
 > N. Fontana, A. D. Haue, E. Di Angelantonio, P. Secchi, S. Brunak, F. Ieva (submitted).
 
 Directed disease-to-disease networks are estimated from longitudinal clinical
