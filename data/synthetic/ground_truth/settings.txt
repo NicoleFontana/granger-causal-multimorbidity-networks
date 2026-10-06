@@ -1,0 +1,7 @@
+seed=2026
+network_seed=2026
+n_persons=5000
+landmarks=0,6,12,24,36,60,90,120
+w=12
+density=0.15
+spectral_radius=0.5

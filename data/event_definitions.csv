@@ -1,0 +1,68 @@
+event_id,event_name,group,icd10,procedure_codes,recording_rule
+1,Acute kidney injury,CMD,N17,,3
+2,Acute pulmonary embolism,CMD,"I26, I27",,3
+3,Aneurysm & dissection,CMD,"I71, I72",,1
+4,Aortic valve disorders,CMD,I35,"OPCS-4: K26, K33.4, K30.2; NOMESCO: FMA, FMC00, FMD10",1
+5,Atrial fibrillation/flutter/conduction disorders,CMD,"I48, I45",,1
+6,Atrioventricular and left bundle-branch block & pacemaker,CMD,I44,"OPCS-4: K60, K61; NOMESCO: FPE, FPF",1
+7,Cardiac arrest,CMD,"I46, I49.0","OPCS-4: X50.3, X50.4, X50.9; NOMESCO: FXA20, FPC00, FXW96",3
+8,Cerebrovascular infarction,CMD,I63,,3
+9,Cerebrovascular disease (other),CMD,"I65-I68, G45",,3
+10,Diabetes,CMD,"E10, E11, E13.2-E13.8",,1
+11,Dilated cardiomyopathy,CMD,I42.0,,1
+12,Dyslipidaemia,CMD,E78.0-E78.5,,1
+13,End stage renal disease,CMD,"N18.0, Z99.2","OPCS-4: M01, X40.1-X40.6 (both registries); NOMESCO: KAS10, KAS20, TJA10, TJA33, XKD00, XKD10, TJA33, TJA33",1
+14,End-stage heart failure,CMD,,"OPCS-4: K01, K02 (both registries); NOMESCO: FQB, FQA",1
+15,Endocarditis,CMD,"I33, I38, I39",,3
+16,Heart failure,CMD,"I50, I11.0",,2
+17,Haemorrhagic stroke,CMD,I60-I62,,3
+18,Hypertension,CMD,I10-I15,,1
+19,Hypertrophic cardiomyopathy,CMD,"I42.1, I42.2",,1
+20,Ischaemic heart disease,CMD,I20-I25,"OPCS-4: K40-K47, K49, K50, K75; NOMESCO: FNA, FNB, FNC, FND, FNG02, FNG96, FNW98, FNG05",2
+21,Mitral valve disorders,CMD,I34,"OPCS-4: K25, K34.1, K30.1; NOMESCO: FKA, FKB10, FKD00",1
+22,Myocarditis,CMD,"I40, I41, I51.4",,3
+23,Other peripheral vascular diseases,CMD,I73,,1
+24,Pericarditis,CMD,"I30, I31, I32",,3
+25,Renal function - CKD stage 3,CMD,N18.3,,1
+26,Renal function - CKD stage 4,CMD,N18.4,,1
+27,Renal function - CKD stage 5,CMD,N18.5,,1
+28,Tricuspid valve disorders,CMD,I36,"OPCS-4: K27, K34.2, K30.3; NOMESCO: FGA, FGC10, FGE10",1
+29,Ventricular tachycardia,CMD,I47.2,,3
+30,CKD stage 2,RISK,N18.2,,1
+31,Atherosclerosis,RISK,I70,,1
+32,Amyloidosis,RISK,E85,,1
+33,Sepsis,RISK,"A40, A41, R65.2",,3
+34,Nutritional anaemias,RISK,D50-D53,,1
+35,Haemolytic anaemias,RISK,D55-D59,,1
+36,Aplastic & other anaemias,RISK,D60-D64,,1
+37,"Coagulation defects, purpura & haemorrhagic conditions",RISK,D65-D69,,1
+38,Rheumatic heart disease,RISK,"I01, I05-I09",,1
+39,Secondary hypertension,RISK,I15,,1
+40,Alcoholic cardiomyopathy,RISK,I42.6,,1
+41,Cardiomyopathy (other classified diseases),RISK,I43,,1
+42,Other heart disorders (other classified diseases),RISK,I52,,1
+43,Arterial & capillary diseases,RISK,I74-I79,,2
+44,Deep vein thrombosis,RISK,"I81, I82",,3
+45,Hypotension,RISK,I95,,3
+46,Postprocedural circulatory complications,RISK,I97,,2
+47,"Mental, behavioural & neurodevelopmental disorders",RISK,F01-F99,,1
+48,Neurological disorders,RISK,"G00-G09, G10-G14, G20-G26, G30-G32, G35-G37, G40-G47, G60-G65, G70-G73, G80-G83, G89-G99",,1
+49,Influenza,RISK,J09-J11,,3
+50,Pneumonia,RISK,"J12-J18, J20-J22",,3
+51,COPD,RISK,J40-J44,,2
+52,Obstructive syndrome (asthma / bronchiectasis),RISK,"J45, J47",,1
+53,Severe pulmonary conditions,RISK,"J80-J84, J90-J91, J96",,2
+54,Urinary tract infection,RISK,"N10, N39",,3
+55,Pregnancy-related complications,RISK,"O03, O10-O16, O24",,1
+56,Congenital cardiovascular malformations,RISK,Q20-Q26,,1
+57,Solid tumour (without metastasis),RISK,"C00-C75, C7A, C7B",,1
+58,Metastatic tumour,RISK,C77-C79,,1
+59,Lymphoid & haematopoietic malignancies,RISK,C81-C96,,1
+60,Liver disease,RISK,"K70-K77, B18",,1
+61,Hemiplegia / paraplegia,RISK,G81-G83,,1
+62,Hypothyroidism,RISK,E00-E03,,1
+63,Dysthyroidism,RISK,E06,,1
+64,Peptic ulcer disease,RISK,K25-K28,,1
+65,Rheumatic disease,RISK,"M05-M06, M30-M36",,1
+66,Hyperthyroidism,RISK,E05,,3
+67,Fluid & electrolyte disorders,RISK,E86-E87,,3

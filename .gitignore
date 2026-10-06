@@ -1,0 +1,18 @@
+# third-party toolkit (downloaded by setup/install_toolkit.sh)
+external/
+
+# outputs of the pipeline
+results/
+results_replication/
+
+# never commit real data or real model outputs
+data/real/
+*.mat
+*.html
+
+# OS / editors / R
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user/
+*.asv

@@ -1,0 +1,43 @@
+{
+  "_comment": "Study design and estimation settings used in the paper. Read by R (jsonlite) and MATLAB (jsondecode).",
+
+  "study_design": {
+    "min_age_years": 40,
+    "max_age_years": 80,
+    "calendar_start": "1994-01-01",
+    "_calendar_comment": "Danish cohorts 1994-2019; the UK Biobank replication used 1995-2019",
+    "calendar_end": "2019-12-31",
+    "min_events": 3,
+    "days_per_month": 30.25
+  },
+
+  "analyses": {
+    "baseline":       {"events": ["CMD"],         "inclusion_events": ["CMD"],         "sex": "all"},
+    "risk_adjusted":  {"events": ["CMD", "RISK"], "inclusion_events": ["CMD"],         "sex": "all"},
+    "extended":       {"events": ["CMD", "RISK"], "inclusion_events": ["CMD", "RISK"], "sex": "all"},
+    "baseline_women": {"events": ["CMD"],         "inclusion_events": ["CMD"],         "sex": "F"},
+    "baseline_men":   {"events": ["CMD"],         "inclusion_events": ["CMD"],         "sex": "M"}
+  },
+
+  "estimation": {
+    "kernel": "gauss",
+    "w": 12,
+    "M": 120,
+    "n_landmarks": 10,
+    "alphaS": 100,
+    "alphaGS": 50,
+    "rho": 0.5,
+    "outer": 10,
+    "inner": 8,
+    "thres": 1e-5,
+    "edge_threshold": 1e-3
+  },
+
+  "grid_search": {
+    "alphaS": [1, 10, 50, 100],
+    "alphaGS": [1, 10, 50, 100, 250],
+    "train_fraction": 0.7,
+    "sampling_fraction": 1.0,
+    "seed": 42
+  }
+}

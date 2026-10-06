@@ -1,0 +1,86 @@
+---
+title: "Network comparison: `r params$label_b` vs `r params$label_a`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+params:
+  analysis_a: "baseline"
+  analysis_b: "risk_adjusted"
+  label_a: "baseline"
+  label_b: "risk-factor-adjusted"
+  results_dir_a: "../results"
+  results_dir_b: "../results"
+  attribution: true
+  overlap: false
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 10)
+source("../R/analysis_functions.R")
+ma <- read_model(file.path(params$results_dir_a, "models", params$analysis_a),
+                 file.path(params$results_dir_a, "sequences", params$analysis_a))
+mb <- read_model(file.path(params$results_dir_b, "models", params$analysis_b),
+                 file.path(params$results_dir_b, "sequences", params$analysis_b))
+# compare over the cardiometabolic (CMD) event types
+A <- cmd_submatrix(ma); B <- cmd_submatrix(mb)
+cmp <- compare_networks(A, B)
+```
+
+Comparison of the CMD-to-CMD excitation matrices of **`r params$label_b`**
+(B) and **`r params$label_a`** (A); differences are B minus A. For models with
+CMD and risk-factor events, the CMD-to-CMD submatrix is used.
+
+## Networks
+
+```{r}
+knitr::kable(rbind(cbind(network = params$label_a, network_summary(A)),
+                   cbind(network = params$label_b, network_summary(B))))
+```
+
+## Element-wise differences
+
+Pearson correlation of edge strengths, direction of change, and two-sided
+Wilcoxon signed-rank test on the element-wise differences (pairs with zero
+difference are excluded by the test; `signed_rank_n` is the effective sample
+size). Substantially altered pairs: absolute difference above the 95th
+percentile of the non-zero absolute differences.
+
+```{r}
+knitr::kable(t(cmp$stats[, lapply(.SD, signif, 4)]), col.names = "value")
+```
+
+```{r, fig.height = 9}
+plot_difference(cmp$diff, sprintf("Difference in\nexcitation strength\n(%s minus\n%s)", params$label_b, params$label_a))
+```
+
+### Substantially altered pairs
+
+```{r}
+knitr::kable(cmp$altered, digits = 4)
+```
+
+```{r, eval = isTRUE(params$attribution), results = "asis"}
+cat("## Risk-factor excitation and shared risk-factor attribution\n\n")
+map <- mb$mapping
+R <- mb$A[map$event_name[map$group == "RISK"], map$event_name[map$group == "CMD"]]
+cat("### Ten strongest relationships from risk-factor event types to CMD events\n\n")
+print(knitr::kable(top_edges(R, 10)))
+att <- risk_attribution(mb, cmp$altered)
+cat("\n\n### Shared risk-factor exposure: altered vs unaltered pairs (two-sided Wilcoxon rank-sum test)\n\n")
+print(knitr::kable(att$test[, lapply(.SD, signif, 4)]))
+cat("\n\n### Main shared risk factor of each substantially altered pair\n\n")
+print(knitr::kable(att$pairs[altered == TRUE][order(min_score)], digits = 2))
+```
+
+```{r, eval = isTRUE(params$overlap), results = "asis"}
+cat("## Cross-population reproducibility\n\n")
+cat("Top-5% edge sets: overlap proportion (shared / top-k of A) and Jaccard index (shared / union); edge presence in each network.\n\n")
+print(knitr::kable(top_overlap(A, B), digits = 3))
+both <- edge_list(A)[, .(cause, effect, strength_A = strength)][, strength_B := as.vector(B)]
+k <- round(0.05 * length(A))
+cat("\n\n### Relationships in the top 5% of both networks\n\n")
+topA <- both[order(-strength_A)][seq_len(k)]
+topB <- both[order(-strength_B)][seq_len(k)]
+print(knitr::kable(topA[paste(cause, effect) %in% paste(topB$cause, topB$effect)], digits = 2))
+```

@@ -1,0 +1,72 @@
+---
+title: "Directed Granger-causal network: `r params$analysis`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+params:
+  analysis: "baseline"
+  results_dir: "../results"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 10)
+source("../R/analysis_functions.R")
+model <- read_model(file.path(params$results_dir, "models", params$analysis),
+                    file.path(params$results_dir, "sequences", params$analysis))
+A <- model$A
+```
+
+Edges are directed Granger-causal relationships: a non-zero integrated
+excitation from *A* to *B* means that past occurrences of *A* improve the
+prediction of future occurrences of *B* given the histories of all other
+modelled event types. They are not estimates of interventional causal effects.
+
+## Cohort
+
+```{r}
+knitr::kable(t(model$cohort), col.names = "value")
+```
+
+## Network summary
+
+```{r}
+knitr::kable(network_summary(A))
+```
+
+## Ten strongest directed relationships
+
+```{r}
+knitr::kable(top_edges(A, 10))
+```
+
+## Weighted in- and out-degree
+
+```{r}
+knitr::kable(degree_table(A))
+```
+
+## Excitation matrix
+
+Rows: source disease; columns: target disease. Asterisks mark the ten strongest connections.
+
+```{r, fig.height = 9}
+plot_heatmap(A)
+```
+
+## Network
+
+Split at the 75th percentile of edge strength for graphical reasons only.
+Node size is proportional to the weighted in-degree; edge width to the excitation strength.
+
+```{r, fig.height = 6, fig.width = 14}
+plot_network(A)
+```
+
+## Excitation kernels
+
+The six strongest relationships excluding self-excitation.
+
+```{r, fig.height = 6}
+plot_kernels(model, 6)
+```

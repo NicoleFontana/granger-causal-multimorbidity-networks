@@ -1,0 +1,19 @@
+--- a/Simulation/Simulation_Thinning_HP.m
++++ b/Simulation/Simulation_Thinning_HP.m
+@@ -58,8 +58,14 @@
+         mt = SupIntensity_HP(t, History, para, options);
+         
+     end
+-    Seqs(n).Time = History(1,:);
+-    Seqs(n).Mark = History(2,:);
++    % [patch] guard against sequences with no events
++    if isempty(History)
++        Seqs(n).Time = [];
++        Seqs(n).Mark = [];
++    else
++        Seqs(n).Time = History(1,:);
++        Seqs(n).Mark = History(2,:);
++    end
+     Seqs(n).Start = 0;
+     Seqs(n).Stop = options.Tmax;
+     
