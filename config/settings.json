@@ -4,8 +4,8 @@
   "study_design": {
     "min_age_years": 40,
     "max_age_years": 80,
-    "calendar_start": "1994-01-01",
-    "_calendar_comment": "Danish cohorts 1994-2019; the UK Biobank replication used 1995-2019",
+    "calendar_start": "1995-01-01",
+    "_calendar_comment": "Danish cohorts and UK Biobank replication: 1995-2019",
     "calendar_end": "2019-12-31",
     "min_events": 3,
     "days_per_month": 30.25

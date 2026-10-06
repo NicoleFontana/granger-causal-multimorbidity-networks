@@ -3,7 +3,7 @@
 | Paper | Code | Notes |
 |---|---|---|
 | Methods – event definitions, recording rules (Supplementary Table S9) | `data/event_definitions.csv`, `R/01_build_sequences.R` | mapping of registry codes to event types is registry-specific and precedes this pipeline |
-| Methods – ages 40–80, calendar window, age in months as process clock | `R/01_build_sequences.R`, `config/settings.json` (`study_design`) | the UK Biobank replication used 1995–2019 (`calendar_start`) |
+| Methods – ages 40–80, calendar window, age in months as process clock | `R/01_build_sequences.R`, `config/settings.json` (`study_design`) | calendar window 1995–2019 for all cohorts (`calendar_start`, `calendar_end`) |
 | Methods – primary, extended and sex-stratified cohorts | `config/settings.json` (`analyses`), `R/01_build_sequences.R` | |
 | Methods – multivariate Hawkes process, Gaussian basis kernels, MLE-SGL | `matlab/pipeline/fit_network.m` (toolkit: `Initialization_Basis`, `Learning_MLE_Basis`) | L = 10 landmarks (`default_landmarks.m`), w = 12 months, lags up to 120 months |
 | Methods – BIC grid search (Supplementary Table S10) | `matlab/pipeline/run_grid_search.m` | 70/30 split of individuals, seed 42 |
